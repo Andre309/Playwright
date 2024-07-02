@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
 
 /**
  * Read environment variables from file.
@@ -11,32 +11,42 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: "./tests",
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
-  testIgnore: '**.skip.**.ts',
+  reporter: "html",
+  // globalSetup: "global-setup.ts",
+  // globalTeardown: "global-setup.ts",
+  testMatch: "**.spec.ts",
+  // testIgnore: "**.skip.**.ts",
   timeout: 60 * 1000,
   use: {
-    baseURL: 'https://playwright.dev',
-    trace: 'retain-on-failure',
+    headless: false,
+    baseURL: "https://playwright.dev",
+    httpCredentials: {
+      username: 'guest',
+      password: 'welcome2qauto'
+    },
+    trace: 'on',
+    // trace: "retain-on-failure",
+    testIdAttribute: 'qa-dont-touch'
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'qauto',
-      testMatch: '**.qauto.spec.ts',
+      name: "qauto",
+      testMatch: "**.qauto.spec.ts",
       use: {
         headless: false,
-        baseURL: 'https://qauto.forstudy.space/',
+        baseURL: "https://qauto.forstudy.space/",
         httpCredentials: {
-          username: 'guest',
-          password: 'welcome2qauto'
-        }
-      }
+          username: "guest",
+          password: "welcome2qauto",
+        },
+      },
     },
   ],
 
