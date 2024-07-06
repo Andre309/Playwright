@@ -19,7 +19,7 @@ export default defineConfig({
   reporter: "html",
   // globalSetup: "global-setup.ts",
   // globalTeardown: "global-setup.ts",
-  testMatch: "**.spec.ts",
+  testMatch: "**.spec1.ts",
   // testIgnore: "**.skip.**.ts",
   timeout: 60 * 1000,
   use: {
@@ -38,7 +38,7 @@ export default defineConfig({
   projects: [
     {
       name: "qauto",
-      testMatch: "**.qauto.spec.ts",
+      testMatch: "**.qauto.spec1.ts",
       use: {
         headless: false,
         baseURL: "https://qauto.forstudy.space/",
