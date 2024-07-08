@@ -8,7 +8,7 @@ test('registration', {tag: '@regression'}, async ({ page }) => {
 
   await homePage.header.clickSignIn();
   await homePage.modal.clickRegister();
-  await homePage.modal.fillRegistrationForm('Elian', 'Space', 'andrij.kufdfdsfh@gmail.com', 'Passdfdf65');
+  await homePage.modal.fillRegistrationForm('Elian', 'Space', 'andrij.kufdggdfsfh@gmail.com', 'Pasdsf65');
   await homePage.modal.submit();
 
   await expect(page).toHaveURL('https://qauto.forstudy.space/panel/garage');

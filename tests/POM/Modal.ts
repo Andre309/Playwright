@@ -34,6 +34,26 @@ export class Modal {
     await this.reEnterPasswordInput.fill(password);
   }
 
+  inputFirstName(value: string){
+    return this.firstNameInput.fill(value)
+  }
+
+  inputLastName(value: string){
+    return this.lastNameInput.fill(value)
+  }
+
+  inputEmail(value: string){
+    return this.emailInput.fill(value)
+  }
+
+  inputPassword(value: string){
+    return this.passwordInput.fill(value)
+  }
+
+  inputRePassword(value: string){
+    return this.reEnterPasswordInput.fill(value)
+  }
+
   async submit() {
     await this.submitBtn.click();
   }
