@@ -4,6 +4,7 @@ import { defineConfig, devices } from "@playwright/test";
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
+require('dotenv').config()
 // import dotenv from 'dotenv';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -24,10 +25,10 @@ export default defineConfig({
   timeout: 60 * 1000,
   use: {
     headless: false,
-    baseURL: "https://playwright.dev",
+    baseURL: process.env.BASE_URL,
     httpCredentials: {
-      username: 'guest',
-      password: 'welcome2qauto'
+      username: process.env.USER_NAME!,
+      password: process.env.USER_PASS!
     },
     trace: 'on',
     // trace: "retain-on-failure",
@@ -41,10 +42,10 @@ export default defineConfig({
       testMatch: "**.qauto.spec1.ts",
       use: {
         headless: false,
-        baseURL: "https://qauto.forstudy.space/",
+        baseURL: process.env.BASE_URL,
         httpCredentials: {
-          username: "guest",
-          password: "welcome2qauto",
+          username: process.env.USER_NAME!,
+          password: process.env.USER_PASS!,
         },
       },
     },
