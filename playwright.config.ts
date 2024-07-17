@@ -20,35 +20,53 @@ export default defineConfig({
   reporter: "html",
   // globalSetup: "global-setup.ts",
   // globalTeardown: "global-setup.ts",
-  testMatch: "**.spec1.ts",
+  testMatch: "**.spec.ts",
   // testIgnore: "**.skip.**.ts",
   timeout: 60 * 1000,
+
   use: {
     headless: false,
     baseURL: process.env.BASE_URL,
+    trace: 'on-first-retry',
     httpCredentials: {
       username: process.env.USER_NAME!,
       password: process.env.USER_PASS!
     },
-    trace: 'on',
-    // trace: "retain-on-failure",
-    testIdAttribute: 'qa-dont-touch'
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "qauto",
-      testMatch: "**.qauto.spec1.ts",
+      name: 'login',
+      testDir: './tests/setup',
+      testMatch: 'login.setup.ts',
       use: {
-        headless: false,
-        baseURL: process.env.BASE_URL,
-        httpCredentials: {
-          username: process.env.USER_NAME!,
-          password: process.env.USER_PASS!,
-        },
-      },
+        ...devices['Desktop Chrome'],
+      }
     },
+    {
+      name: 'qauto',
+      testMatch: '**qauto.spec.ts',
+      use: {
+        ...devices['Desktop Chrome']
+      }
+    },
+    {
+      name: 'example',
+      testDir: './tests/storage',
+      testMatch: '**.spec.ts',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'session-storage.json',
+      },
+      dependencies: ['login']
+    },
+    {
+      name: 'fixtures',
+      testDir: './tests/fixture',
+      testMatch: '**.spec.ts',
+      use: { ...devices['Desktop Chrome'] }
+    }
   ],
 
   /* Run your local dev server before starting the tests */
