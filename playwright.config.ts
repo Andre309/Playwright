@@ -39,10 +39,17 @@ export default defineConfig({
     {
       name: 'login',
       testDir: './tests/setup',
-      testMatch: 'login.setup.ts',
+      testMatch: '**.setup.ts',
       use: {
         ...devices['Desktop Chrome'],
       }
+    },
+    {
+      name: 'api-tests',
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      testMatch: '*api/*.spec.ts'
     },
     {
       name: 'qauto',
