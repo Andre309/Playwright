@@ -4,3 +4,6 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+example.qauto.spec1.ts/
+Negative.qauto.spec.ts/
+Positive.qauto.spec.ts
