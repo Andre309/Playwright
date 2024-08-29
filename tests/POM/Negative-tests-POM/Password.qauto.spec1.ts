@@ -39,6 +39,7 @@ test('registration', {tag: '@regression'}, async ({ page }) => {
 
 // 4. Недопустимі символи (Пароль без великих літер)
 
+
 await homePage.modal.inputPassword('password188');
 await lastNameInput.focus();
 await expect(page.getByText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter')).toBeVisible();
@@ -46,6 +47,7 @@ await expect(passwordInput).toHaveCSS('border-color', 'rgb(220, 53, 69)');
 await expect(submitBtn).toBeDisabled();
 
 // 5. Недопустимі символи (Пароль без малих літер)
+
 
   await homePage.modal.inputPassword('PASSWORD15');
   await lastNameInput.focus();
